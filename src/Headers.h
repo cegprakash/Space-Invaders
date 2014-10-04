@@ -5,11 +5,13 @@
 // We'll define this to stop MSVC complaining about sprintf().
 #define _CRT_SECURE_NO_WARNINGS
 #pragma comment(lib, "Irrlicht.lib")
+#pragma comment(lib, "IrrKlang.lib")
 #endif
 
 #include <irrlicht.h>
 #include <iostream>
 #include <vector>
+#include <irrKlang.h>
 
 using namespace irr;
 using namespace scene;

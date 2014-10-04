@@ -27,6 +27,7 @@
     <ClInclude Include="src\Shooter.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="audio\IrrlichtTheme.ogg" />
     <None Include="images\spaceInvadersBG.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -63,8 +64,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\SpaceInvaders\irrlicht-1.8.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\SpaceInvaders\irrlicht-1.8.1\lib\Win32-visualstudio;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\SpaceInvaders\irrKlang-1.5.0\include;D:\SpaceInvaders\irrlicht-1.8.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\SpaceInvaders\irrKlang-1.5.0\lib\Win32-visualStudio;D:\SpaceInvaders\irrlicht-1.8.1\lib\Win32-visualstudio;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

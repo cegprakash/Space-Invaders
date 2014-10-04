@@ -16,6 +16,7 @@ class LevelController{
 		int getLeftMostAlien();
 		int getRightMostAlien();
 		int getBottomMostAlien();
+		irrklang::ISoundEngine* soundEngine;
 
 	public:
 
@@ -34,7 +35,7 @@ class LevelController{
 		void play();
 		void updateAliens();
 		void strikeAliens();
-		
+		~LevelController();
 };
 
 #endif

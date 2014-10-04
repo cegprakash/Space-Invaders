@@ -61,5 +61,11 @@
     <None Include="audio\IrrlichtTheme.ogg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="audio\ShooterFire.mp3">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="audio\Blast.mp3">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

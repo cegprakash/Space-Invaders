@@ -1,12 +1,10 @@
-﻿Build started 10/5/2014 4:04:55 AM.
+﻿Build started 10/5/2014 4:29:42 AM.
      1>Project "D:\SpaceInvaders\SpaceInvaders.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Release\SpaceInvaders.unsuccessfulbuild".
+         Creating "Release\SpaceInvaders.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt src\Alien.cpp src\Bullet.cpp src\LevelController.cpp src\Shooter.cpp src\main.cpp
          Alien.cpp
-     1>src\Alien.cpp(8): warning C4305: 'argument' : truncation from 'double' to 'irr::f32'
-     1>src\Alien.cpp(12): warning C4305: 'argument' : truncation from 'double' to 'irr::f32'
          Bullet.cpp
          LevelController.cpp
          Shooter.cpp
@@ -29,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.81
+Time Elapsed 00:00:11.47

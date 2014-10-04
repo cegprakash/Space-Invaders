@@ -14,9 +14,8 @@
 int main()
 {
 	LevelController levelController;
-	irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
-	engine->play2D("audio/IrrlichtTheme.ogg", true); 
+	
 	levelController.play(); 
-	engine->drop(); 
+ 
 	return 0;
 }

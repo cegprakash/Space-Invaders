@@ -27,7 +27,9 @@
     <ClInclude Include="src\Shooter.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="audio\Blast.mp3" />
     <None Include="audio\IrrlichtTheme.ogg" />
+    <None Include="audio\ShooterFire.mp3" />
     <None Include="images\spaceInvadersBG.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

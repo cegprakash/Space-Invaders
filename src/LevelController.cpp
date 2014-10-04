@@ -5,6 +5,8 @@ LevelController::LevelController(){
 	device = createDevice(video::EDT_OPENGL, core::dimension2d<u32>(1000, 752), 16, false, false, false, &receiver);
 	driver = device->getVideoDriver();
 	smgr = device->getSceneManager();
+	soundEngine = irrklang::createIrrKlangDevice();
+	soundEngine->play2D("audio/IrrlichtTheme.ogg", true);
 
 	bgTexture = driver->getTexture("images/spaceInvadersBG.jpg");
     //driver->makeColorKeyTexture(images, core::position2d<s32>(1000,752));
@@ -48,6 +50,7 @@ void LevelController::play(){
 		if(receiver.IsKeyDown(irr::KEY_SPACE)){
 			if(!shootPressed){
 				shooter.fireBullet(smgr->addCubeSceneNode());
+				soundEngine->play2D("audio/ShooterFire.mp3");
 			}
 			shootPressed = true;
 		}
@@ -89,6 +92,7 @@ void LevelController::strikeAliens(){
 		for(j = 0; j < (int)aliens.size(); ){
 			if(aliens[j].alienNode->getTransformedBoundingBox().intersectsWithBox(shooter.bullets[i].bulletNode->getTransformedBoundingBox()))
 			{
+				soundEngine->play2D("audio/Blast.mp3");
 				targetFound = true;
 				shooter.bullets[i].destroy();
 				shooter.bullets.erase(shooter.bullets.begin()+i);
@@ -169,4 +173,8 @@ int LevelController::getBottomMostAlien(){
 		}
 	}
 	return index;
+}
+
+LevelController::~LevelController(){
+	soundEngine->drop();
 }

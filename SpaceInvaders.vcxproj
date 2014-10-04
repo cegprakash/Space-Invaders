@@ -26,6 +26,9 @@
     <ClInclude Include="src\MyEventReceiver.h" />
     <ClInclude Include="src\Shooter.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\spaceInvadersBG.jpg" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{38FAAEEA-1C1A-4107-A88E-F18200EEECC2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

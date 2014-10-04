@@ -2,9 +2,12 @@
 
 LevelController::LevelController(){
 
-	device = createDevice(video::EDT_OPENGL, core::dimension2d<u32>(1000, 1000), 16, false, false, false, &receiver);
+	device = createDevice(video::EDT_OPENGL, core::dimension2d<u32>(1000, 752), 16, false, false, false, &receiver);
 	driver = device->getVideoDriver();
 	smgr = device->getSceneManager();
+
+	bgTexture = driver->getTexture("images/spaceInvadersBG.jpg");
+    //driver->makeColorKeyTexture(images, core::position2d<s32>(1000,752));
 
 	currentLevel = 1;
 	score = 0;
@@ -55,6 +58,10 @@ void LevelController::play(){
 		updateAliens();
 
 		driver->beginScene(true, true, SColor(123,100,100,100));
+		driver->draw2DImage(bgTexture, core::position2d<s32>(0,0),
+                core::rect<s32>(0,0,1000,752), 0,
+                video::SColor(255,255,255,255), true);
+
         smgr->drawAll();
 		driver->endScene();
 	}

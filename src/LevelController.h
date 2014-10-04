@@ -11,7 +11,7 @@ class LevelController{
 		MyEventReceiver receiver;
 		IrrlichtDevice* device;
 		IVideoDriver* driver;
-
+		ITexture* bgTexture;
 		bool aliensMoveDirection;
 		int getLeftMostAlien();
 		int getRightMostAlien();

@@ -1,11 +1,16 @@
 Requirements:
-=============
+-------------
 
 Visual Studio, Win-32
 
+To Play:
+--------
 
-Steps to Run:
-============
+Run the .exe file in Release folder
+
+
+Steps to Build the project and run:
+-----------------------------------
 
  - Clone/Download the project into D drive.
  - Run in "Release" mode.

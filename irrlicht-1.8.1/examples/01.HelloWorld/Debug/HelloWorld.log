@@ -1,0 +1,18 @@
+﻿Build started 10/2/2014 5:41:02 AM.
+     1>Project "C:\irrlicht-1.8.1\examples\01.HelloWorld\HelloWorld.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating ".\Debug\01.HelloWorld.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+     1>C:\Program Files\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\irrlicht-1.8.1\examples\01.HelloWorld\.\Debug\01.HelloWorld.exe) does not match the Linker's OutputFile property value (C:\irrlicht-1.8.1\bin\Win32-VisualStudio\01.HelloWorld.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         All outputs are up-to-date.
+         HelloWorld.vcxproj -> C:\irrlicht-1.8.1\examples\01.HelloWorld\.\Debug\01.HelloWorld.exe
+       FinalizeBuildStatus:
+         Deleting file ".\Debug\01.HelloWorld.unsuccessfulbuild".
+         Touching ".\Debug\01.HelloWorld.lastbuildstate".
+     1>Done Building Project "C:\irrlicht-1.8.1\examples\01.HelloWorld\HelloWorld.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.11

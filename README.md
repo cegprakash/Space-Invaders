@@ -22,3 +22,8 @@ Steps to Build the project and run:
  - Select Configuration as "All Configurations" and select "VC++ Directories"
  - Specify the correct path for include and library directories of irrlicht and irrKlang
  - Run in "Release" mode.
+
+Thanks to
+----------
+ - Irrlicht - 3D rendering engine
+ - Irrklang - Audio engine

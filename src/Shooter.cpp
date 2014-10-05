@@ -2,6 +2,8 @@
 
 void Shooter::initShooter(IMeshSceneNode *node){
 	shooterNode = node;
+	node->setRotation(vector3df(90,0,0));
+	node->setScale(vector3df(3));
 	bullets.clear();
 }
 

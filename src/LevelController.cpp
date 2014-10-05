@@ -14,7 +14,7 @@ LevelController::LevelController(){
 	currentLevel = 1;
 	score = 0;
 	lives = 3;
-	shooter.initShooter((IMeshSceneNode*)smgr->addCubeSceneNode());
+	shooter.initShooter(smgr->addMeshSceneNode(smgr->getMesh("mesh/SpaceShip.dae")));
 	//shooter.shooterNode->setMaterialTexture(0,driver->getTexture("Roket.png"));
 
 	smgr->addLightSceneNode(0,vector3df(0,200,-400));
@@ -74,12 +74,14 @@ void LevelController::generateLevel(){
 	int i, j;
 
 	for(i = 0; i < 5; i++)
-		for(j = 0; j < 10; j++){
-			IMeshSceneNode* alienNode = smgr->addCubeSceneNode();
-			alienNode->setScale(vector3df(2));
+		for(j = 0; j < 8; j++){
+			IMeshSceneNode* alienNode =  smgr->addMeshSceneNode(smgr->getMesh("mesh/SpaceShip.dae"));	
+			alienNode->setScale(vector3df(5));
+			alienNode->setRotation(vector3df(270,0,0));
+//			IMeshSceneNode* alienNode =  smgr->addMeshSceneNode(smgr->getMesh("mesh/Heller_armor/dlc_armoured_heller.3DS"));
 			Alien alien(alienNode, ALIEN_EASY);
 			vector3df alienSize = alienNode->getMesh()->getBoundingBox().getExtent();
-			vector3df position(-200+j*30+j*alienSize.X, 250+i*25+i*alienSize.Y, 0);
+			vector3df position(-200+j*5*alienSize.X+j*40, 250+i*40+5*i*alienSize.Y, 0);
 			alienNode->setPosition(position);
 			aliens.push_back(alien);
 		}

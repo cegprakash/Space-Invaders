@@ -14,6 +14,8 @@
 #include <irrKlang.h>
 #include <cstring>
 #include <sstream>
+#include <ctime>
+#include <cmath>
 
 using namespace irr;
 using namespace scene;

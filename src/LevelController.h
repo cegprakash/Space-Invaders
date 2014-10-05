@@ -40,7 +40,7 @@ class LevelController{
 		bool isGameOver();
 		void generateLevel();
 		void play();
-		void updateAliens();
+		void updateAliens(float diffSeconds);
 		void strikeAliens();
 		~LevelController();
 };

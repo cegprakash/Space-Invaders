@@ -11,9 +11,9 @@ class Alien{
 
 		Alien(IMeshSceneNode *alienNode, AlienType type);
 
-		void moveLeft(float speed);
-		void moveRight(float speed);
-		void moveDown(float speed);
+		void moveLeft(float distance);
+		void moveRight(float distance);
+		void moveDown(float distance);
 		void destroy();
 
 };

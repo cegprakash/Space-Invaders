@@ -1,4 +1,8 @@
 #include "LevelController.h"
+#include <cmath>
+
+static float currentTime = (float)clock();
+static int baseSpeed = 720/5;
 
 LevelController::LevelController(){
 
@@ -59,7 +63,12 @@ void LevelController::play(){
 
 		shooter.updateBullets();
 		strikeAliens();
-		updateAliens();
+		
+		currentTime = clock() - currentTime;
+		float diffSeconds = currentTime/CLOCKS_PER_SEC;
+		updateAliens(diffSeconds);
+		currentTime = (float)clock();
+		
 		fireAlienBullets();
 		updateAlienBullets();
 
@@ -76,6 +85,7 @@ void LevelController::play(){
 		gui->drawAll();
 		driver->endScene();
 	}
+
 }
 
 wstring LevelController::getScoreString(){
@@ -100,13 +110,12 @@ void LevelController::generateLevel(){
 
 	for(i = 0; i < 5; i++)
 		for(j = 0; j < 8; j++){
-			IMeshSceneNode* alienNode =  smgr->addMeshSceneNode(smgr->getMesh("mesh/SpaceShip.dae"));	
-			alienNode->setScale(vector3df(5));
-			alienNode->setRotation(vector3df(270,0,0));
-			Alien alien(alienNode, ALIEN_EASY);
-			vector3df alienSize = alienNode->getMesh()->getBoundingBox().getExtent();
+			IMesh* mesh = smgr->getMesh("mesh/SpaceShip.dae");
+			vector3df alienSize = mesh->getBoundingBox().getExtent();
 			vector3df position(-200+j*5*alienSize.X+j*40, 250+i*40+5*i*alienSize.Y, 0);
-			alienNode->setPosition(position);
+			vector3df rotation(270,0,0);
+			IMeshSceneNode* alienNode =  smgr->addMeshSceneNode(smgr->getMesh("mesh/SpaceShip.dae"),0,-1,position,rotation,vector3df(5));	
+			Alien alien(alienNode, ALIEN_EASY);
 			aliens.push_back(alien);
 		}
 }
@@ -162,33 +171,35 @@ void LevelController::strikeAliens(){
 	}
 }
 
-void LevelController::updateAliens(){
+void LevelController::updateAliens(float diffSeconds){
 	if(aliens.size()==0)
 		return;
+	float moveDistance = min(currentLevel*diffSeconds*baseSpeed,(f32)1.0);
 	float leftPosition = aliens[getLeftMostAlien()].alienNode->getPosition().X;
 	float rightPosition = aliens[getRightMostAlien()].alienNode->getPosition().X;
 	if(leftPosition < -360.0){
 		for(int i=0; i<(int)aliens.size(); i++){
-			aliens[i].moveDown(currentLevel);
-			aliens[i].moveRight((float)currentLevel);
+			aliens[i].moveRight(moveDistance);
+			aliens[i].moveDown((f32)currentLevel*3);
 		}
-		aliensMoveDirection = !aliensMoveDirection;
-	
+		aliensMoveDirection = !aliensMoveDirection;	
 	}
 	else if(rightPosition > 360.0){
 		for(int i=0; i<(int)aliens.size(); i++){
-			aliens[i].moveDown(currentLevel);
-			aliens[i].moveLeft((float)currentLevel);
+			aliens[i].moveLeft(moveDistance);
+			aliens[i].moveDown((f32)currentLevel*3);
+			
+			vector3df position = aliens[i].alienNode->getPosition();
 		}
 		aliensMoveDirection = !aliensMoveDirection;
 	}
 	else{
 		if(aliensMoveDirection)
 			for(int i=0; i<(int)aliens.size(); i++)
-				aliens[i].moveRight((float)currentLevel);
+				aliens[i].moveRight(moveDistance);
 		else
 			for(int i=0; i<(int)aliens.size();i++)
-				aliens[i].moveLeft((float)currentLevel);
+				aliens[i].moveLeft(moveDistance);
 	}
 }
 

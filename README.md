@@ -1,8 +1,8 @@
 How To Play:
 ------------
 
-Download/Clone the project in D drive
-Run the .exe file in Release folder
+ - Download/Clone the project in D drive
+ - Run the .exe file in Release folder
 
 Supports:
 ---------

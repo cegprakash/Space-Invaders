@@ -1,12 +1,14 @@
-Requirements:
--------------
+How To Play:
+------------
 
-Visual Studio, Win-32
-
-To Play:
---------
-
+Download/Clone the project in D drive
 Run the .exe file in Release folder
+
+Supports:
+---------
+ - Win 32.
+
+As the game is built on irrlicht it supports any platform. But will require to build the project in the respective platform.
 
 
 Steps to Build the project and run:
@@ -22,6 +24,8 @@ Steps to Build the project and run:
  - Select Configuration as "All Configurations" and select "VC++ Directories"
  - Specify the correct path for include and library directories of irrlicht and irrKlang
  - Run in "Release" mode.
+
+Requirements: Visual studio
 
 Thanks to
 ----------

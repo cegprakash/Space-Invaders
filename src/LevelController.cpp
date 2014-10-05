@@ -9,18 +9,19 @@ LevelController::LevelController(){
 	soundEngine->play2D("audio/IrrlichtTheme.ogg", true);
 
 	bgTexture = driver->getTexture("images/spaceInvadersBG.jpg");
-    //driver->makeColorKeyTexture(images, core::position2d<s32>(1000,752));
-
+    
 	currentLevel = 1;
 	score = 0;
 	lives = 3;
 	shooter.initShooter(smgr->addMeshSceneNode(smgr->getMesh("mesh/SpaceShip.dae")));
-	//shooter.shooterNode->setMaterialTexture(0,driver->getTexture("Roket.png"));
 
 	smgr->addLightSceneNode(0,vector3df(0,200,-400));
 	ICameraSceneNode *camera = smgr->addCameraSceneNode();
 	camera->setPosition(vector3df(0,200,-400));
 	camera->setTarget(vector3df(0,200,1));			//camera at -z faces z.
+	
+	gui = device->getGUIEnvironment();
+	font = gui->getFont("font/fonthaettenschweiler.bmp");
 }
 
 bool LevelController::isGameOver(){
@@ -66,12 +67,34 @@ void LevelController::play(){
 		driver->draw2DImage(bgTexture, core::position2d<s32>(0,0),
                 core::rect<s32>(0,0,1000,752), 0,
                 video::SColor(255,255,255,255), true);
-
-        smgr->drawAll();
+		
+		dimension2d<u32> size = font->getDimension(getScoreString().c_str());
+		font->draw(getScoreString().c_str(),rect<s32>(5,5, 5+size.Width, 5+size.Height), SColor(255,255,255,255));
+		 size = font->getDimension(getLivesString().c_str());
+		font->draw(getLivesString().c_str(),rect<s32>(850,5, 850+size.Width, 5+size.Height), SColor(255,255,255,255));
+		smgr->drawAll();
+		gui->drawAll();
 		driver->endScene();
 	}
 }
 
+wstring LevelController::getScoreString(){
+	stringstream ss; ss<<score;
+	std::string scoreValueString;
+	ss>>scoreValueString;
+	std::string resultStr = "Score : "+scoreValueString;
+	wstring scoreString(resultStr.begin(),resultStr.end());
+	return scoreString;
+}
+
+wstring LevelController::getLivesString(){
+	stringstream ss; ss<<lives;
+	std::string livesValueString;
+	ss>>livesValueString;
+	std::string resultStr = "Lives : "+livesValueString;
+	wstring livesString(resultStr.begin(),resultStr.end());
+	return livesString;
+}
 void LevelController::generateLevel(){
 	int i, j;
 
@@ -130,6 +153,7 @@ void LevelController::strikeAliens(){
 				shooter.bullets.erase(shooter.bullets.begin()+i);
 				aliens[j].destroy();
 				aliens.erase(aliens.begin()+j);
+				score += 10;
 				break;
 			}
 			else j++;
@@ -145,7 +169,7 @@ void LevelController::updateAliens(){
 	float rightPosition = aliens[getRightMostAlien()].alienNode->getPosition().X;
 	if(leftPosition < -360.0){
 		for(int i=0; i<(int)aliens.size(); i++){
-			aliens[i].moveDown();
+			aliens[i].moveDown(currentLevel);
 			aliens[i].moveRight((float)currentLevel);
 		}
 		aliensMoveDirection = !aliensMoveDirection;
@@ -153,7 +177,7 @@ void LevelController::updateAliens(){
 	}
 	else if(rightPosition > 360.0){
 		for(int i=0; i<(int)aliens.size(); i++){
-			aliens[i].moveDown();
+			aliens[i].moveDown(currentLevel);
 			aliens[i].moveLeft((float)currentLevel);
 		}
 		aliensMoveDirection = !aliensMoveDirection;

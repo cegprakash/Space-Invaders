@@ -5,6 +5,7 @@
 #include "Constants.h"
 #include "Alien.h"
 #include "MyEventReceiver.h"
+#include <cstring>
 
 class LevelController{
 	private:
@@ -17,9 +18,13 @@ class LevelController{
 		int getRightMostAlien();
 		int getBottomMostAlien();
 		irrklang::ISoundEngine* soundEngine;
-
+		IGUIFont *font;
+		IGUIEnvironment* gui;
 		void fireAlienBullets();
 		void updateAlienBullets();
+		wstring getScoreString();
+		wstring getLivesString();
+
 	public:
 
 		ISceneManager* smgr;

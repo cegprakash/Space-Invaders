@@ -12,6 +12,8 @@
 #include <iostream>
 #include <vector>
 #include <irrKlang.h>
+#include <cstring>
+#include <sstream>
 
 using namespace irr;
 using namespace scene;

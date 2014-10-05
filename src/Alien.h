@@ -13,7 +13,7 @@ class Alien{
 
 		void moveLeft(float speed);
 		void moveRight(float speed);
-		void moveDown();
+		void moveDown(float speed);
 		void destroy();
 
 };

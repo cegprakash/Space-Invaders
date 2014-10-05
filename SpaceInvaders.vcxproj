@@ -29,6 +29,7 @@
   <ItemGroup>
     <None Include="audio\Blast.mp3" />
     <None Include="audio\IrrlichtTheme.ogg" />
+    <None Include="audio\LifeGone.mp3" />
     <None Include="audio\ShooterFire.mp3" />
     <None Include="images\spaceInvadersBG.jpg" />
   </ItemGroup>

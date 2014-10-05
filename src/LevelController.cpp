@@ -59,6 +59,8 @@ void LevelController::play(){
 		shooter.updateBullets();
 		strikeAliens();
 		updateAliens();
+		fireAlienBullets();
+		updateAlienBullets();
 
 		driver->beginScene(true, true, SColor(123,100,100,100));
 		driver->draw2DImage(bgTexture, core::position2d<s32>(0,0),
@@ -78,13 +80,41 @@ void LevelController::generateLevel(){
 			IMeshSceneNode* alienNode =  smgr->addMeshSceneNode(smgr->getMesh("mesh/SpaceShip.dae"));	
 			alienNode->setScale(vector3df(5));
 			alienNode->setRotation(vector3df(270,0,0));
-//			IMeshSceneNode* alienNode =  smgr->addMeshSceneNode(smgr->getMesh("mesh/Heller_armor/dlc_armoured_heller.3DS"));
 			Alien alien(alienNode, ALIEN_EASY);
 			vector3df alienSize = alienNode->getMesh()->getBoundingBox().getExtent();
 			vector3df position(-200+j*5*alienSize.X+j*40, 250+i*40+5*i*alienSize.Y, 0);
 			alienNode->setPosition(position);
 			aliens.push_back(alien);
 		}
+}
+
+void LevelController::fireAlienBullets(){
+	for(int i=0; i<(int)aliens.size(); i++){
+		if(rand()%(aliens.size()*100/(currentLevel))==0){
+			if(aliens[i].bullet->bulletNode == NULL){
+				aliens[i].bullet = new Bullet(smgr->addCubeSceneNode(10.0,0,-1,aliens[i].alienNode->getPosition()));
+			}
+		}	
+	}
+}
+
+void LevelController::updateAlienBullets(){
+	for(int i=0; i<(int)aliens.size();i++){
+		if(aliens[i].bullet->bulletNode != NULL){
+			if(aliens[i].bullet->bulletNode->getTransformedBoundingBox().intersectsWithBox(shooter.shooterNode->getTransformedBoundingBox())){
+				lives--;
+				soundEngine->play2D("audio/LifeGone.mp3");
+				aliens[i].bullet->destroy();
+			}
+			else if(aliens[i].bullet->bulletNode->getPosition().Y < 0)
+			{
+				aliens[i].bullet->destroy();
+			}
+			else{
+				aliens[i].bullet->moveDown();
+			}
+		}
+	}
 }
 
 void LevelController::strikeAliens(){

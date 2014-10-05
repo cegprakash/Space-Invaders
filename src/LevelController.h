@@ -18,6 +18,8 @@ class LevelController{
 		int getBottomMostAlien();
 		irrklang::ISoundEngine* soundEngine;
 
+		void fireAlienBullets();
+		void updateAlienBullets();
 	public:
 
 		ISceneManager* smgr;

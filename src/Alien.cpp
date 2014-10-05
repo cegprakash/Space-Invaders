@@ -1,7 +1,8 @@
 #include "Alien.h"
 
-Alien::Alien(IMeshSceneNode *node, AlienType type){
-	alienNode = node;
+Alien::Alien(IMeshSceneNode *alienNode, AlienType type){
+	this->alienNode = alienNode;
+	bullet = new Bullet(NULL);
 }
 
 void Alien::moveLeft(float speed){
@@ -17,6 +18,10 @@ void Alien::moveDown(){
 }
 
 void Alien::destroy(){
-	alienNode->remove();
-	alienNode = NULL;
+
+	bullet->destroy();
+	if(alienNode){
+		alienNode->remove();
+		alienNode = NULL;
+	}
 }

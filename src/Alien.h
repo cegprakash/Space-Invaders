@@ -7,9 +7,9 @@
 class Alien{
 	public:
 		IMeshSceneNode *alienNode;
-		vector<Bullet> bullets;
+		Bullet *bullet;
 
-		Alien(IMeshSceneNode *node, AlienType type);
+		Alien(IMeshSceneNode *alienNode, AlienType type);
 
 		void moveLeft(float speed);
 		void moveRight(float speed);

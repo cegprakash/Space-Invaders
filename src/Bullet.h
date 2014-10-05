@@ -9,6 +9,7 @@ class Bullet{
 		IMeshSceneNode *bulletNode;
 		Bullet(IMeshSceneNode *node);
 		void moveUp();
+		void moveDown();
 		void destroy();
 };
 
